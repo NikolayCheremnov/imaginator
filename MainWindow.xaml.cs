@@ -28,26 +28,25 @@ namespace imaginator
         }
 
         // fields
-        WriteableBitmap w_wbm = null;    // working writeable bitmap
-        WriteableBitmap bh_wbm = null;   // brightness histogram bitmap
+        BitmapImage w_bm = null;    // working writeable bitmap
+        BitmapImage bh_bm = null;   // brightness histogram bitmap
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog reply = FileDialogHandler();
             if (reply != null)
             {
-                BitmapImage bm = new BitmapImage();
-                bm.BeginInit();
-                bm.UriSource = new Uri(reply.FileName);
-                bm.DecodePixelWidth = (int)ImageArea.Width;
-                bm.DecodePixelHeight = (int)ImageArea.Height;
-                bm.EndInit();
-                w_wbm = new WriteableBitmap(bm);
-                ImageArea.Source = w_wbm;
+                w_bm = new BitmapImage();
+                w_bm.BeginInit();
+                w_bm.UriSource = new Uri(reply.FileName);
+                w_bm.DecodePixelWidth = (int)ImageArea.Width;
+                w_bm.DecodePixelHeight = (int)ImageArea.Height;
+                w_bm.EndInit();
+                ImageArea.Source = w_bm;
                 // drawing brightness histogram
-                BrightnessHistogramСalculator bhc = new BrightnessHistogramСalculator(w_wbm);
-                bh_wbm = bhc.CalculateHistogram((int)HistogramArea.Width, (int)HistogramArea.Height);
-                HistogramArea.Source = bh_wbm;
+                BrightnessHistogramСalculator bhc = new BrightnessHistogramСalculator(w_bm);
+                bh_bm = bhc.CalculateHistogram((int)HistogramArea.Width, (int)HistogramArea.Height);
+                HistogramArea.Source = bh_bm;
             } // add else branch with message box
         }
         

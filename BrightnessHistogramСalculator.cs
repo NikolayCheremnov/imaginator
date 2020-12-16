@@ -13,20 +13,16 @@ namespace imaginator
 {
     class BrightnessHistogramСalculator
     {
-        private WriteableBitmap srs;
-        private int width;
-        private int height;
-        public BrightnessHistogramСalculator(WriteableBitmap srs)
+        private BitmapImage srs;
+ 
+        public BrightnessHistogramСalculator(BitmapImage srs)
         {
             this.srs = srs;
-            // standart width and height for histogram
-            width = 256;
-            height = 300;
         }
 
-        public WriteableBitmap CalculateHistogram(int width, int height)
+        public BitmapImage CalculateHistogram(int width, int height)
         {
-            Bitmap bmp = BitmapFromWriteableBitmap(); 
+            Bitmap bmp = FormatConverter.BitmapFromWriteableBitmap(srs); 
             // array data
             int[] Y = new int[256];
 
@@ -58,38 +54,10 @@ namespace imaginator
                     barChart.SetPixel(i, j, System.Drawing.Color.Black);
 
 
-            return new WriteableBitmap(BitmapImageFromBitmap(barChart, width, height));
+            return FormatConverter.BitmapImageFromBitmap(barChart, width, height);
         }
 
         // internal converter
-        private Bitmap BitmapFromWriteableBitmap()
-        {
-            Bitmap bmp;
-            using (MemoryStream outStream = new MemoryStream())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create((BitmapSource)srs));
-                enc.Save(outStream);
-                bmp = new Bitmap(outStream);
-            }
-            return bmp;
-        }
-
-        private BitmapImage BitmapImageFromBitmap(Bitmap bitmap, int width, int height)
-        {
-            using (MemoryStream memory = new MemoryStream())
-            {
-                bitmap.Save(memory, ImageFormat.Png);
-                memory.Position = 0;
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.DecodePixelWidth = width;
-                bitmapImage.DecodePixelHeight = height;
-                bitmapImage.EndInit();
-                return bitmapImage;
-            }
-        }
+        
     }
 }
