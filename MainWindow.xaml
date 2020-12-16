@@ -1,0 +1,17 @@
+﻿<Window x:Class="imaginator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:imaginator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="957.2">
+    <Grid x:Name="MainGrid" >
+        <Image HorizontalAlignment="Left" Height="431" Margin="10,30,0,0" VerticalAlignment="Top" Width="600" x:Name="ImageArea"/>
+        <Menu Height="25" VerticalAlignment="Top" Margin="0,0,9.6,0">
+            <MenuItem Header="File" x:Name="File" Height="25" Width="31">
+                <MenuItem Header="LoadImage" x:Name="LoadImage" Click="LoadImage_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>
