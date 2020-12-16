@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:imaginator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="957.2">
+        Title="MainWindow" Height="600" Width="1068.8">
     <Grid x:Name="MainGrid" >
         <Image HorizontalAlignment="Left" Height="431" Margin="10,30,0,0" VerticalAlignment="Top" Width="600" x:Name="ImageArea"/>
         <Menu Height="25" VerticalAlignment="Top" Margin="0,0,9.6,0">
@@ -13,5 +13,6 @@
                 <MenuItem Header="LoadImage" x:Name="LoadImage" Click="LoadImage_Click"></MenuItem>
             </MenuItem>
         </Menu>
+        <Image x:Name="HistogramArea" Margin="628,25,10.4,0" Height="100" VerticalAlignment="Top" Width="400"/>
     </Grid>
 </Window>
