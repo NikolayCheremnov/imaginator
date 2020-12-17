@@ -14,5 +14,8 @@
             </MenuItem>
         </Menu>
         <Image x:Name="HistogramArea" Margin="628,25,10.4,0" Height="100" VerticalAlignment="Top" Width="400"/>
+        <Slider x:Name="rbConversion" HorizontalAlignment="Left" Margin="650,130,0,0" VerticalAlignment="Top" Height="24" Width="412" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
+        <Slider x:Name="gbConversion" HorizontalAlignment="Left" Margin="650,159,0,0" VerticalAlignment="Top" Height="24" Width="412" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
+        <Slider x:Name="bbConversion" HorizontalAlignment="Left" Margin="650,188,0,0" VerticalAlignment="Top" Height="24" Width="412" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
     </Grid>
 </Window>

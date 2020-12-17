@@ -21,7 +21,9 @@ namespace imaginator
             {
                 BitmapEncoder enc = new BmpBitmapEncoder();
                 enc.Frames.Add(BitmapFrame.Create((BitmapSource)srs));
+                outStream.Position = 0;
                 enc.Save(outStream);
+                outStream.Position = 0;
                 bmp = new Bitmap(outStream);
             }
             return bmp;
@@ -31,6 +33,7 @@ namespace imaginator
         {
             using (MemoryStream memory = new MemoryStream())
             {
+                memory.Position = 0;
                 bitmap.Save(memory, ImageFormat.Png);
                 memory.Position = 0;
                 BitmapImage bitmapImage = new BitmapImage();

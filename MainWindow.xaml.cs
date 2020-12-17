@@ -37,14 +37,18 @@ namespace imaginator
             if (reply != null)
             {
                 controller = new PixelController(reply.FileName, (int)ImageArea.Width, (int)ImageArea.Height);
-                ImageArea.Source = controller.GetBitmapImage();
-                // drawing brightness histogram
-                BrightnessHistogramСalculator bhc = new BrightnessHistogramСalculator(controller.GetBitmapImage());
-                bh_bm = bhc.CalculateHistogram((int)HistogramArea.Width, (int)HistogramArea.Height);
-                HistogramArea.Source = bh_bm;
+                ImageRedrawing();
             } // add else branch with message box
         }
         
+        private void ImageRedrawing()
+        {
+            ImageArea.Source = controller.GetBitmapImageFromStream();
+            // drawing brightness histogram
+            BrightnessHistogramСalculator bhc = new BrightnessHistogramСalculator(controller.GetBitmapImageFromStream());
+            bh_bm = bhc.CalculateHistogram((int)HistogramArea.Width, (int)HistogramArea.Height);
+            HistogramArea.Source = bh_bm;
+        }
         private OpenFileDialog FileDialogHandler()
         {
             OpenFileDialog loadObjectFileDialog = new OpenFileDialog();
@@ -54,6 +58,12 @@ namespace imaginator
             if (loadObjectFileDialog.FileName == "")
                 return null;
             return loadObjectFileDialog;
+        }
+
+        private void bConversion_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            controller.BConversion((int)rbConversion.Value, (int)gbConversion.Value, (int)bbConversion.Value);
+            ImageRedrawing();
         }
     }
 }
