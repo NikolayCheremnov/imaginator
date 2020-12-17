@@ -13,9 +13,40 @@
                 <MenuItem Header="LoadImage" x:Name="LoadImage" Click="LoadImage_Click"></MenuItem>
             </MenuItem>
         </Menu>
-        <Image x:Name="HistogramArea" Margin="628,25,10.4,0" Height="100" VerticalAlignment="Top" Width="400"/>
-        <Slider x:Name="rbConversion" HorizontalAlignment="Left" Margin="650,130,0,0" VerticalAlignment="Top" Height="24" Width="412" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
-        <Slider x:Name="gbConversion" HorizontalAlignment="Left" Margin="650,159,0,0" VerticalAlignment="Top" Height="24" Width="412" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
-        <Slider x:Name="bbConversion" HorizontalAlignment="Left" Margin="650,188,0,0" VerticalAlignment="Top" Height="24" Width="412" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
+        <Image x:Name="HistogramArea" Margin="650,25,23.4,0" Height="138" VerticalAlignment="Top" Width="400"/>
+        <TabControl HorizontalAlignment="Left" Height="392" Margin="650,168,0,0" VerticalAlignment="Top" Width="402">
+            <TabItem Header="tab_temp">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Brigtness conversion">
+                <Grid Background="#FFE5E5E5">
+                    <Slider x:Name="rbConversion" HorizontalAlignment="Left" Margin="94,10,0,0" VerticalAlignment="Top" Height="24" Width="259" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
+                    <Slider x:Name="gbConversion" HorizontalAlignment="Left" Margin="94,39,0,0" VerticalAlignment="Top" Height="24" Width="259" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
+                    <Slider x:Name="bbConversion" HorizontalAlignment="Left" Margin="94,68,0,0" VerticalAlignment="Top" Height="24" Width="259" Maximum="255" Minimum="-255" Thumb.DragCompleted="bConversion_DragCompleted" />
+                    <Label Content="-255" HorizontalAlignment="Left" Margin="94,97,0,0" VerticalAlignment="Top"/>
+                    <Label Content="0" HorizontalAlignment="Left" Margin="216,97,0,0" VerticalAlignment="Top"/>
+                    <Label Content="255" HorizontalAlignment="Left" Margin="324,97,0,0" VerticalAlignment="Top"/>
+                    <Label Content="R:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="G:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
+                    <Label Content="B:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Contrast conversion">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="rcConversion" HorizontalAlignment="Left" Height="23" Margin="50,10,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="84"/>
+                    <TextBox x:Name="gcConversion" HorizontalAlignment="Left" Height="23" Margin="50,38,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="84"/>
+                    <TextBox x:Name="bcConversion" HorizontalAlignment="Left" Height="23" Margin="50,66,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="84"/>
+                    <Label Content="R:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="G:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
+                    <Label Content="B:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="cSet" Content="Set" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Width="124" Click="cSet_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Chroma conversion">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="makeBinary" Content="Make binary" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="makeBinary_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

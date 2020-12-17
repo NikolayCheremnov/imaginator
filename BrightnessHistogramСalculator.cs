@@ -53,8 +53,19 @@ namespace imaginator
                 for (int j = max-1; j > max - Y[i]; j--)
                     barChart.SetPixel(i, j, System.Drawing.Color.Black);
 
-
-            return FormatConverter.BitmapImageFromBitmap(barChart, width, height);
+            try
+            {
+                return FormatConverter.BitmapImageFromBitmap(barChart, width, height);
+            } catch (Exception ex)
+            {
+                Bitmap plugBarChart = new Bitmap(256, 256);
+                using (Graphics graph = Graphics.FromImage(barChart))
+                {
+                    Rectangle ImageSize = new Rectangle(0, 0, width, height);
+                    graph.FillRectangle(System.Drawing.Brushes.White, ImageSize);
+                }
+                return FormatConverter.BitmapImageFromBitmap(plugBarChart, width, height);
+            }
         }
     }
 }

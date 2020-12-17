@@ -58,6 +58,48 @@ namespace imaginator
                 }
         }
 
+        // chroma conversion
+
+
+        // the conversion of contrast
+        public void CConversion(double rValue, double gValue, double bValue)
+        {
+            int rAv = average(R);
+            int gAv = average(G);
+            int bAv = average(B);
+            Bitmap bm = GetBitmapFromStream();  // the converted image
+            for (int i = 0; i < pixelWidth; i++)
+                for (int j = 0; j < pixelHeight; j++)
+                {
+                    Color newColor = Color.FromArgb(getNewCConversionValue(R[i, j], rValue, rAv)
+                                                    , getNewCConversionValue(G[i, j], gValue, gAv),
+                                                    getNewCConversionValue(B[i, j], bValue, bAv));
+                    bm.SetPixel(i, j, newColor);
+                }
+            // update streams
+            RewriteBitmapImageStream(bm);
+            RewriteBitmapStream(GetBitmapImageFromStream());
+        }
+
+        private int getNewCConversionValue(int oldValue, double k, int av)
+        {
+            int newValue = (int)(k * (oldValue - av) + av);
+            if (newValue > 255)
+                return 255;
+            else if (newValue < 0)
+                return 0;
+            else
+                return newValue;
+        }
+
+        private int average(int[,] Ch)
+        {
+            int sum = 0;
+            for (int i = 0; i < pixelWidth; i++)
+                for (int j = 0; j < pixelHeight; j++)
+                    sum += Ch[i, j];
+            return sum / (pixelWidth * pixelHeight);
+        }
         //  the conversion of brightness
         public void BConversion(int rValue, int gValue, int bValue) //
         {

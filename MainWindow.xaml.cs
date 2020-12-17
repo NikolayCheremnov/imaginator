@@ -65,5 +65,26 @@ namespace imaginator
             controller.BConversion((int)rbConversion.Value, (int)gbConversion.Value, (int)bbConversion.Value);
             ImageRedrawing();
         }
+
+        private void cSet_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double rValue = Convert.ToDouble(rcConversion.Text);
+                double gValue = Convert.ToDouble(gcConversion.Text);
+                double bValue = Convert.ToDouble(bcConversion.Text);
+                controller.CConversion(rValue, gValue, bValue);
+                ImageRedrawing();
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Incorrent data");
+            }
+        }
+
+        private void makeBinary_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
