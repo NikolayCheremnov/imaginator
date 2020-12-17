@@ -13,7 +13,7 @@ namespace imaginator
     // class for some images types conversion
     class FormatConverter
     {
-        public static Bitmap BitmapFromWriteableBitmap(BitmapImage srs)
+        public static Bitmap BitmapFromBitmapImage(BitmapImage srs)
         {
             Bitmap bmp;
             using (MemoryStream outStream = new MemoryStream())

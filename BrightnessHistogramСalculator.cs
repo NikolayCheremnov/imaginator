@@ -22,7 +22,8 @@ namespace imaginator
 
         public BitmapImage CalculateHistogram(int width, int height)
         {
-            Bitmap bmp = FormatConverter.BitmapFromWriteableBitmap(srs); 
+            Bitmap bmp = FormatConverter.BitmapFromBitmapImage(srs); 
+
             // array data
             int[] Y = new int[256];
 
@@ -52,7 +53,6 @@ namespace imaginator
             for (int i = 0; i < 256; i++)
                 for (int j = max-1; j > max - Y[i]; j--)
                     barChart.SetPixel(i, j, System.Drawing.Color.Black);
-
 
             return FormatConverter.BitmapImageFromBitmap(barChart, width, height);
         }
