@@ -28,7 +28,7 @@ namespace imaginator
         }
 
         // fields
-        BitmapImage w_bm = null;    // working writeable bitmap
+        PixelController controller = null;
         BitmapImage bh_bm = null;   // brightness histogram bitmap
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
@@ -36,15 +36,10 @@ namespace imaginator
             OpenFileDialog reply = FileDialogHandler();
             if (reply != null)
             {
-                w_bm = new BitmapImage();
-                w_bm.BeginInit();
-                w_bm.UriSource = new Uri(reply.FileName);
-                w_bm.DecodePixelWidth = (int)ImageArea.Width;
-                w_bm.DecodePixelHeight = (int)ImageArea.Height;
-                w_bm.EndInit();
-                ImageArea.Source = w_bm;
+                controller = new PixelController(reply.FileName, (int)ImageArea.Width, (int)ImageArea.Height);
+                ImageArea.Source = controller.GetBitmapImage();
                 // drawing brightness histogram
-                BrightnessHistogramСalculator bhc = new BrightnessHistogramСalculator(w_bm);
+                BrightnessHistogramСalculator bhc = new BrightnessHistogramСalculator(controller.GetBitmapImage());
                 bh_bm = bhc.CalculateHistogram((int)HistogramArea.Width, (int)HistogramArea.Height);
                 HistogramArea.Source = bh_bm;
             } // add else branch with message box

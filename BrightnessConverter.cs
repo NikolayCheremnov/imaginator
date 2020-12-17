@@ -8,5 +8,6 @@ namespace imaginator
 {
     class BrightnessConverter
     {
+
     }
 }

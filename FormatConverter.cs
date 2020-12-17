@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace imaginator
@@ -13,7 +14,7 @@ namespace imaginator
     // class for some images types conversion
     class FormatConverter
     {
-        public static Bitmap BitmapFromWriteableBitmap(BitmapImage srs)
+        public static Bitmap BitmapFromBitmapImage(BitmapImage srs)
         {
             Bitmap bmp;
             using (MemoryStream outStream = new MemoryStream())
